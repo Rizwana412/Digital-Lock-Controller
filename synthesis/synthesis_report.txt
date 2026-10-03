@@ -1,0 +1,168 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2024  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.47+121 (git sha1 98b4affc4, g++ 13.2.0-23ubuntu4 -fPIC -O3)
+
+-- Running command `read_verilog -sv rtl/digital_lock_controller.sv; hierarchy -top digital_lock_controller; proc; opt; check; stat' --
+
+1. Executing Verilog-2005 frontend: rtl/digital_lock_controller.sv
+Parsing SystemVerilog input from `rtl/digital_lock_controller.sv' to AST representation.
+Generating RTLIL representation for module `\digital_lock_controller'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \digital_lock_controller
+
+2.2. Analyzing design hierarchy..
+Top module:  \digital_lock_controller
+Removed 0 unused modules.
+
+3. Executing PROC pass (convert processes to netlists).
+
+3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$rtl/digital_lock_controller.sv:12$1 in module digital_lock_controller.
+Removed a total of 0 dead cases.
+
+3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 0 assignments to connections.
+
+3.4. Executing PROC_INIT pass (extract init attributes).
+
+3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \reset in `\digital_lock_controller.$proc$rtl/digital_lock_controller.sv:12$1'.
+
+3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~2 debug messages>
+
+3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\digital_lock_controller.$proc$rtl/digital_lock_controller.sv:12$1'.
+     1/3: $0\count[3:0]
+     2/3: $0\alarm[0:0]
+     3/3: $0\unlock[0:0]
+
+3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\digital_lock_controller.\unlock' using process `\digital_lock_controller.$proc$rtl/digital_lock_controller.sv:12$1'.
+  created $adff cell `$procdff$15' with positive edge clock and positive level reset.
+Creating register for signal `\digital_lock_controller.\alarm' using process `\digital_lock_controller.$proc$rtl/digital_lock_controller.sv:12$1'.
+  created $adff cell `$procdff$18' with positive edge clock and positive level reset.
+Creating register for signal `\digital_lock_controller.\count' using process `\digital_lock_controller.$proc$rtl/digital_lock_controller.sv:12$1'.
+  created $adff cell `$procdff$21' with positive edge clock and positive level reset.
+
+3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `\digital_lock_controller.$proc$rtl/digital_lock_controller.sv:12$1'.
+Removing empty process `digital_lock_controller.$proc$rtl/digital_lock_controller.sv:12$1'.
+Cleaned up 2 empty switches.
+
+3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module digital_lock_controller.
+<suppressed ~3 debug messages>
+
+4. Executing OPT pass (performing simple optimizations).
+
+4.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module digital_lock_controller.
+
+4.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\digital_lock_controller'.
+Removed a total of 0 cells.
+
+4.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \digital_lock_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+4.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \digital_lock_controller.
+Performed a total of 0 changes.
+
+4.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\digital_lock_controller'.
+Removed a total of 0 cells.
+
+4.6. Executing OPT_DFF pass (perform DFF optimizations).
+Handling D = Q on $procdff$21 ($adff) from module digital_lock_controller (removing D path).
+Adding EN signal on $procdff$15 ($adff) from module digital_lock_controller (D = $procmux$9_Y, Q = \unlock).
+Adding EN signal on $procdff$18 ($adff) from module digital_lock_controller (D = $procmux$4_Y, Q = \alarm).
+Setting constant 0-bit at position 0 on $procdff$21 ($dlatch) from module digital_lock_controller.
+Setting constant 0-bit at position 1 on $procdff$21 ($dlatch) from module digital_lock_controller.
+Setting constant 0-bit at position 2 on $procdff$21 ($dlatch) from module digital_lock_controller.
+Setting constant 0-bit at position 3 on $procdff$21 ($dlatch) from module digital_lock_controller.
+
+4.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \digital_lock_controller..
+Removed 2 unused cells and 12 unused wires.
+<suppressed ~3 debug messages>
+
+4.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module digital_lock_controller.
+
+4.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \digital_lock_controller..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+4.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \digital_lock_controller.
+Performed a total of 0 changes.
+
+4.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\digital_lock_controller'.
+Removed a total of 0 cells.
+
+4.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \digital_lock_controller..
+
+4.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module digital_lock_controller.
+
+4.16. Finished OPT passes. (There is nothing left to do.)
+
+5. Executing CHECK pass (checking for obvious problems).
+Checking module digital_lock_controller...
+Found and reported 0 problems.
+
+6. Printing statistics.
+
+=== digital_lock_controller ===
+
+   Number of wires:                 10
+   Number of wire bits:             16
+   Number of public wires:           7
+   Number of public wire bits:      13
+   Number of ports:                  6
+   Number of port bits:              9
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  5
+     $adffe                          2
+     $eq                             1
+     $mux                            2
+
+End of script. Logfile hash: 54c9d1005f, CPU: user 0.03s system 0.01s, MEM: 17.00 MB peak
+Yosys 0.47+121 (git sha1 98b4affc4, g++ 13.2.0-23ubuntu4 -fPIC -O3)
+Time spent: 40% 4x opt_expr (0 sec), 18% 2x read_verilog (0 sec), ...
