@@ -1,58 +1,22 @@
-# Digital Lock Controller
+...
 
-A digital lock controller implemented in SystemVerilog and synthesized using the SKY130 standard-cell library.
+## Simulation Waveforms
 
-## Flow
+### Correct Password / Unlock
 
-RTL
-→ Yosys synthesis
-→ SKY130 standard-cell mapping
-→ Gate-level netlist
-→ OpenSTA
-→ Setup/Hold timing analysis
+![Correct password waveform](waveforms/digital_lock_waveform.png)
 
-## Technology
+The waveform shows the expected behavior for the correct password sequence, with the `unlock` output asserted.
 
-- PDK: SKY130
-- Standard-cell library: sky130_fd_sc_hd
-- Timing corner: tt
-- Clock period: 10 ns
-- Clock frequency: 100 MHz
+### Incorrect Password / Alarm
 
-## Tools
+![Incorrect password waveform](waveforms/digital_lock_waveform2.png)
 
-- Yosys
-- OpenSTA
-- Docker
-- SKY130 standard-cell library
+The waveform shows the expected behavior for an incorrect password sequence, with the `alarm` output asserted.
 
-## Timing Results
+## Simulation Files
 
-| Metric | Result |
-|---|---:|
-| Clock period | 10.00 ns |
-| Worst setup slack | +9.32 ns |
-| Worst hold slack | +0.09 ns |
-| Setup | MET |
-| Hold | MET |
+The corresponding VCD waveform files are available in the `waveforms/` directory:
 
-## Repository Structure
-
-```text
-rtl/
-    digital_lock_controller.sv
-
-synthesis/
-    digital_lock_controller_mapped.v
-    sta/
-        digital_lock.sdc
-        run_sta.tcl
-        timing_report.txt
-
-
-### Step 3 — Push the README
-
-```bash
-git add README.md
-git commit -m "Document SKY130 synthesis and STA results"
-git push
+- `digital_lock_controller.vcd`
+- `digital_lock_controller_2.vcd`
