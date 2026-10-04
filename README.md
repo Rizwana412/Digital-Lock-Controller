@@ -343,8 +343,10 @@ Developed as an RTL design and verification project demonstrating the digital de
 
 ### Waveform 1 — Correct Input
 
-![Waveform 1](waveforms/waveform_1.png)
+![Waveform 1](waveforms/digital_lock_waveform.png)
+
 
 ### Waveform 2 — Incorrect Input
 
-![Waveform 2](waveforms/waveform_2.png)
+![Waveform 2](waveforms/digital_lock_waveform.png)
+
