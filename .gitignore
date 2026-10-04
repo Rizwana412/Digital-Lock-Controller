@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+
+# PDK / large generated repositories
+skywater-pdk/
+skywater-pdk-libs-sky130_fd_sc_hd/
+
+# Generated/build files
+*.log
+*.core
+*.d
+*.o
+
+# Keep synthesis results and STA reports
