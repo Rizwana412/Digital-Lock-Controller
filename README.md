@@ -339,3 +339,12 @@ The repository contains the source code, testbenches, waveform files, waveform s
 **Digital Lock Controller — SystemVerilog RTL Project**
 
 Developed as an RTL design and verification project demonstrating the digital design flow from specification through synthesis and documentation.
+## GTKWave Simulation Results
+
+### Waveform 1 — Correct Input
+
+![Waveform 1](waveforms/waveform_1.png)
+
+### Waveform 2 — Incorrect Input
+
+![Waveform 2](waveforms/waveform_2.png)
