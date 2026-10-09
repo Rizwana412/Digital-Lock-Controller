@@ -1,0 +1,18 @@
+Multi-Corner Static Timing Analysis
+Design: digital_lock_controller
+Clock period: 10.0 ns (100 MHz)
+Timing constraints: synthesis/sta/digital_lock.sdc
+
+Corner   Process / Conditions          Setup Slack   Hold Slack   Setup TNS
+TT       Typical, 25C, 1.80V           +9.321 ns     +0.089 ns    0.00 ns
+SS       Slow, -40C, 1.40V             +7.039 ns     +0.274 ns    0.00 ns
+FF       Fast, -40C, 1.95V             +9.615 ns     +0.057 ns    0.00 ns
+
+All three corners report positive worst setup and hold slack.
+Smallest setup margin: SS corner (+7.039 ns).
+Smallest hold margin: FF corner (+0.057 ns).
+
+Limitations:
+- Pre-layout analysis; routed parasitics are not included.
+- Uses ideal clock assumptions and zero input/output delays as specified in the SDC.
+- Results are exploratory and are not final sign-off timing.
