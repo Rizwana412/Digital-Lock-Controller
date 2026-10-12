@@ -1,0 +1,14 @@
+`timescale 1ns/1ps
+module tb_digital_lock;
+reg clk,rst,enter,clear; reg [3:0] keypad;
+wire unlock,alarm; wire [2:0] attempts;
+digital_lock_controller uut(.clk(clk),.rst(rst),.keypad(keypad),.enter(enter),.clear(clear),.unlock(unlock),.alarm(alarm),.attempts(attempts));
+initial begin clk=0; forever #5 clk=~clk; end
+initial begin
+rst=1; #20 rst=0;
+keypad=1; enter=1; #10 enter=0; #10;
+keypad=2; enter=1; #10 enter=0; #10;
+keypad=3; enter=1; #10 enter=0; #10;
+keypad=4; enter=1; #10 enter=0; #200; $finish;
+end
+endmodule
