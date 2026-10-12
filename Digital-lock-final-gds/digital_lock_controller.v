@@ -1,1 +1,39 @@
+module digital_lock_controller(
+    input clk, rst, enter, clear,
+    input [3:0] keypad,
+    output reg unlock, alarm,
+    output reg [2:0] attempts,
+    output reg [3:0] state_led
+);
+    // Password = 1-2-3-4
+    parameter PASS0=1,PASS1=2,PASS2=3,PASS3=4;
+    parameter IDLE=0,S1=1,S2=2,S3=3,S4=4,CHECK=5,UNLOCKED=6,ALARM=7;
+    reg [2:0] state,next_state;
+    reg [3:0] pass[0:3];
+    reg [1:0] idx;
+    reg [2:0] cnt;
+    reg [15:0] timer;
 
+    always @(posedge clk or posedge rst)
+        if(rst) state<=IDLE; else state<=next_state;
+
+    always @(*) begin
+        next_state=state;
+        case(state)
+            IDLE: if(enter) next_state=S1;
+            S1: if(enter) next_state=S2;
+            S2: if(enter) next_state=S3;
+            S3: if(enter) next_state=S4;
+            S4: if(enter) next_state=CHECK;
+            CHECK: begin
+                if(pass[0]==PASS0 && pass[1]==PASS1 && pass[2]==PASS2 && pass[3]==PASS3)
+                    next_state=UNLOCKED;
+                else if(cnt>=2) next_state=ALARM;
+                else next_state=IDLE;
+            end
+            UNLOCKED: if(timer>=200) next_state=IDLE;
+            ALARM: if(clear) next_state=IDLE;
+        endcase
+        if(clear) next_state=IDLE;
+    end
+endmodule
